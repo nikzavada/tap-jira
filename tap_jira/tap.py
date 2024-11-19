@@ -75,6 +75,7 @@ class TapJira(Tap):
             streams.PermissionHolderStream(self),
             streams.SprintStream(self),
             streams.ProjectRoleActorStream(self),
+            # no access to auditing
             # streams.AuditingStream(self),
             streams.DashboardStream(self),
             streams.FilterSearchStream(self),
@@ -90,7 +91,9 @@ class TapJira(Tap):
             streams.IssueChangeLogStream(self),
             streams.IssueComments(self),
             streams.BoardStream(self),
-            streams.IssueWatchersStream(self),
+            # snowflake.connector.errors.ProgrammingError: 000904 (42000): SQL compilation error: error line 1 at position 224
+            # invalid identifier 'ID'
+            # streams.IssueWatchersStream(self),
             streams.IssueWorklogs(self),
         ]
 
